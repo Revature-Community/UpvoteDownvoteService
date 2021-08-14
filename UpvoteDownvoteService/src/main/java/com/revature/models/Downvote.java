@@ -18,13 +18,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public @Data class Downvote {
 
-	private int userId;
-
-	public Downvote(int postId, int userId) {
-		this.postId = postId;
-		this.userId = userId;
-	}
-	
 	@Id
     @Column(name = "id")
     @GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -32,6 +25,13 @@ public @Data class Downvote {
     
     @Column(name = "postId")
 	private int postId;
+    
+	private int userId;
+
+	public Downvote(int postId, int userId) {
+		this.postId = postId;
+		this.userId = userId;
+	}
     
 	
 }

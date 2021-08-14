@@ -20,7 +20,7 @@ import com.revature.service.DownvoteService;
 
 @CrossOrigin("*")
 @RestController
-@RequestMapping("/downvotes")
+@RequestMapping("/downvote")
 public class DownvoteController {
 
     @Autowired
