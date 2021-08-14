@@ -28,7 +28,7 @@ public class UpvoteController {
 	
 	@PostMapping("/add-upvote")
 	public ResponseEntity<Upvote> save(@RequestBody Upvote upvote) throws IOException {
-		
+
 		Upvote u = new Upvote();
 		u.setPostId(upvote.getPostId());
 		u.setUserId(upvote.getUserId());
