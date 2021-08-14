@@ -20,7 +20,6 @@ import com.revature.service.DownvoteService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(DownvoteController.class)
-@SpringBootTest
 public class DownvoteControllerPostTest {
 	
 	@Autowired 
@@ -40,12 +39,10 @@ public class DownvoteControllerPostTest {
 	@Test
 	public void submitDownvoteTest() throws Exception {
 		// set Response object
-		Downvote dv = new Downvote();
-		dv.setId(1);
-		dv.setPostId(1);
-		dv.setUserId(1);
+		Downvote dv = new Downvote(1, 1);
 		
-		mvc.perform(post("/downvotes/add-downvote")
+		
+		mvc.perform(post("/downvote/add-downvote")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(toJson(dv)))
 				.andExpect(status().isOk());
@@ -54,18 +51,15 @@ public class DownvoteControllerPostTest {
 	@Test
 	public void deleteDownvoteTest() throws Exception {
 		// set Response object
-		Downvote dv = new Downvote();
-		dv.setId(1);
-		dv.setPostId(1);
-		dv.setUserId(1);
+		Downvote dv = new Downvote(1, 1);
 		
 		// insert Response object into mock database
-		mvc.perform(post("/downvotes/add-downvote")
+		mvc.perform(post("/downvote/add-downvote")
 				.contentType(MediaType.APPLICATION_JSON)
 				.content(toJson(dv)));
 		
 		// perform Delete method on Response with Id 1 in mock database, checks for success  
-		mvc.perform(delete("/downvotes/delete/1"))
+		mvc.perform(delete("/downvote/delete/1"))
 				.andExpect(status().isOk());
 	}
 

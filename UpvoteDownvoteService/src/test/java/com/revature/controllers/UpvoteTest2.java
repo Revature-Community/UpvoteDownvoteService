@@ -20,7 +20,6 @@ import com.revature.service.UpvoteService;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(UpvoteController.class)
-@SpringBootTest
 public class UpvoteTest2 {
 
 	@Autowired 
