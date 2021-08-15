@@ -84,11 +84,4 @@
 		</plugins>
 	</build>
 
-	<distributionManagement>
-    	<repository>
-        	<id>UpvoteDownvoteService</id>
-        	<url>https://github.com/Revature-Community/UpvoteDownvoteService.git</url>
-    	</repository>
-	</distributionManagement>
-
 </project>
