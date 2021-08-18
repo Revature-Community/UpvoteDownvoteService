@@ -44,8 +44,8 @@ public class UpvoteController {
 	}
 	
 	@GetMapping("/{postId}")
-    public ResponseEntity<List<Upvote>> getUpvotesByPostId(@PathVariable("postId") int postId) { 
+    public ResponseEntity<Integer> getUpvotesByPostId(@PathVariable("postId") int postId) { 
         List<Upvote> us = userv.getUpvotesByPostId(postId);
-        return new ResponseEntity<List<Upvote>>(us, HttpStatus.OK); 
+        return new ResponseEntity<Integer>(us.size(), HttpStatus.OK); 
     }
 }

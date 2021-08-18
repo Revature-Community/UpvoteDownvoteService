@@ -27,9 +27,9 @@ public class DownvoteController {
     private DownvoteService dvservice; 
     
     @GetMapping("/{postId}")
-    public ResponseEntity<List<Downvote>> getalldownvotesbypostid(@PathVariable("postId") int postId) { 
+    public ResponseEntity<Integer> getalldownvotesbypostid(@PathVariable("postId") int postId) { 
         List<Downvote> dv = dvservice.getAllDownvotesByPostId(postId);
-        return new ResponseEntity<List<Downvote>>(dv, HttpStatus.OK); 
+        return new ResponseEntity<Integer>(dv.size(), HttpStatus.OK); 
     }
     
     @PostMapping("/add-downvote")
@@ -48,5 +48,6 @@ public class DownvoteController {
         dvservice.deleteDownvote(id);
         return new ResponseEntity<Downvote>(HttpStatus.OK);
     }
+    
     
 }
