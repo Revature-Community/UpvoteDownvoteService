@@ -15,14 +15,19 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.revature.models.Downvote;
 import com.revature.models.Upvote;
+import com.revature.service.DownvoteService;
 import com.revature.service.UpvoteService;
 
 @CrossOrigin("*")
 @RestController
 @RequestMapping("/upvote")
 public class UpvoteController {
-
+	
+	@Autowired
+    private DownvoteService dvservice; 
+	
 	@Autowired
 	private UpvoteService userv;
 	
@@ -43,9 +48,17 @@ public class UpvoteController {
 		return new ResponseEntity<Upvote>(HttpStatus.OK);
 	}
 	
-	@GetMapping("/{postId}")
+//	@GetMapping("/{postId}")
+//    public ResponseEntity<Integer> getUpvotesByPostId(@PathVariable("postId") int postId) { 
+//        List<Upvote> us = userv.getUpvotesByPostId(postId);
+//        return new ResponseEntity<Integer>(us.size(), HttpStatus.OK); 
+//    }
+	
+	@GetMapping("/count/{postId}")
     public ResponseEntity<Integer> getUpvotesByPostId(@PathVariable("postId") int postId) { 
+		List<Downvote> dv = dvservice.getAllDownvotesByPostId(postId);
         List<Upvote> us = userv.getUpvotesByPostId(postId);
-        return new ResponseEntity<Integer>(us.size(), HttpStatus.OK); 
+        Integer count = us.size() - dv.size();
+        return new ResponseEntity<Integer>(count, HttpStatus.OK); 
     }
 }
